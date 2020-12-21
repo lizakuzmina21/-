@@ -12,6 +12,7 @@ using namespace std;
 
 
 
+void write_to_file(Park_Car);//записать в файл
 int main_menu();
 
 bool str_cmp(Data d1, Data d2)
@@ -81,6 +82,11 @@ int main()
 			getchar();
 			break;
 
+		case 3:
+			cout << "Выгрузка парка\n";
+			write_to_file(h);
+			break;
+
 		}
 	}
 
@@ -94,9 +100,10 @@ int main_menu()
 
 	cout << "1. Добавить машину в парк" << endl;
 	cout << "2. Показать парк" << endl;
+	cout << "3. Выгрузить машины в файл" << endl;
 	cout << "0. Exit" << endl;
 
-	while (true)
+	while (true) // Проверьте правильность ввода
 	{
 		cout << "> ";
 		cin >> tmp;
@@ -108,6 +115,36 @@ int main_menu()
 	return menu;
 }
 
+
+void write_to_file(Park_Car h)
+{
+	ofstream out;
+	Data d;
+	list<Car*> l = h.get_Car();
+
+
+
+
+	out.open("C:\\Users\\Кузлик\\source\\repos\\Project9\\Project9\\Debug\\parck.txt", ios_base::app);
+
+
+	for (auto el : l)
+	{
+		d = el->get_data();
+
+		out << "Тип машины: " << d.typeCar << endl;
+		out << "Цвет машины: " << d.color << endl;
+		out << "Объем двигателя: " << d.volumeD << endl;
+		out << "Номер маршрута: " << d.number << endl;
+		out << "Год производства: " << d.yearP << endl;
+		out << "Год запуска в эксплуатацию: " << d.yearZ << endl;
+		out << "Тип топлива: " << d.type << endl;
+		out << "Число пассажиров: " << d.passengers << endl;
+		out << "Объем груза: " << d.volumeG << endl;
+	}
+	out.close();
+
+}
 
 
 
