@@ -27,7 +27,7 @@ void Car::create(int flag)
 
 	while (true)
 	{
-		cout << "1.цвет: "<<endl;
+		cout << "1.цвет: ";
 		getline(cin, tmp);
 		data.color = atoi(tmp.c_str());
 		break;

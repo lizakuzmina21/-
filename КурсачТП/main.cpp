@@ -79,13 +79,25 @@ int main()
 
 		case 2:
 			h.show();
-			getchar();
+			system("pause");
 			break;
 
 		case 3:
 			cout << "Выгрузка парка\n";
 			write_to_file(h);
 			break;
+
+		case 4:
+			cout << "Какую машину вы хотите изменить" << endl;
+			h.show();
+			cin >> n;
+			while (true)
+			{
+				cout << "> ";
+				cin>> tmp;
+				break;
+			}
+			h.change(n - 1);
 
 		}
 	}
@@ -101,6 +113,7 @@ int main_menu()
 	cout << "1. Добавить машину в парк" << endl;
 	cout << "2. Показать парк" << endl;
 	cout << "3. Выгрузить машины в файл" << endl;
+	cout << "4. Изменить машину в парке" << endl;
 	cout << "0. Exit" << endl;
 
 	while (true) // Проверьте правильность ввода
@@ -114,6 +127,7 @@ int main_menu()
 
 	return menu;
 }
+
 
 
 void write_to_file(Park_Car h)

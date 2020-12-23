@@ -10,7 +10,7 @@ public:
 	void create_passenger() override;
 	void create_truck() override;
 	void create_tram() override;
-
+	void change(int);//изменение
 	void setData(Data);
 	void show();
 	list<Car*> get_Car();
