@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Car.h"
+#include "Valid.h"
 
 using namespace std;
 
@@ -11,44 +12,47 @@ void Car::create(int flag)
 	cout << "1.Категория машины: ";
 	if (flag == 1)
 	{
-		data.typeCar = "Car_Product";
+		data.typeCar = "Легковая";
 		cout << "Легковая" << endl;
 	}
 	else if (flag == 2)
 	{
-		data.typeCar = "Truck_Product";
-		cout << "Грузовая машина" << endl;
+		data.typeCar = "Грузовая";
+		cout << "Грузовая" << endl;
 	}
 	else
 	{
-		data.typeCar = "Tram_Product";
+		data.typeCar = "Трамвай";
 		cout << "Трамвай" << endl;
 	}
 
-	while (true)
+	do
 	{
-		cout << "1.цвет: ";
-		getline(cin, tmp);
-		data.color = atoi(tmp.c_str());
-		break;
-	}
+		cout << "1. Цвет: ";
+		getline(cin, data.color);
+	} while (!str_valid(data.color));
+	
 
 	while (true)
 	{
 		cout << "2. Цена: ";
 		getline(cin, tmp);
 		data.price = atoi(tmp.c_str());
+		if (num_valid(tmp))
+			if (data.price > 0)
+				break;
 
-		break;
 	}
 
 	while (true)
 	{
-		cout << "3. Объем двигателя: ";
+		cout << "3. Объем: ";
 		getline(cin, tmp);
 		data.volumeD = atoi(tmp.c_str());
+		if (num_valid(tmp))
+			if (data.volumeD > 0)
+				break;
 
-		break;
 	}
 
 	while (true)
@@ -56,7 +60,10 @@ void Car::create(int flag)
 		cout << "4. Номер маршрута: ";
 		getline(cin, tmp);
 		data.number = atoi(tmp.c_str());
-		break;
+		if (num_valid(tmp))
+			if (data.number > 0)
+				break;
+
 	}
 
 	while (true)
@@ -64,7 +71,10 @@ void Car::create(int flag)
 		cout << "5. Год производства: ";
 		getline(cin, tmp);
 		data.yearP = atoi(tmp.c_str());
-		break;
+		if (num_valid(tmp))
+			if (data.yearP > 0)
+				break;
+
 	}
 
 	while (true)
@@ -72,35 +82,35 @@ void Car::create(int flag)
 		cout << "6. Год запуска в эксплуатацию: ";
 		getline(cin, tmp);
 		data.yearZ = atoi(tmp.c_str());
+		if (num_valid(tmp))
+			if (data.yearZ > 0)
+				break;
 
-		break;
 	}
-	//do
-	//{
-	//	cout << "7. Тип топлива: ";
-	//	getline(cin, data.type);
-	//} while (!str_valid(data.type));
-
-
-
+	do
+	{
+		cout << "7. Тип топлива: ";
+		getline(cin, data.type);
+	} while (!str_valid(data.type));
+	
 	while (true) // Check for correct input
 	{
 		cout << "8. Число пассажиров: ";
 		getline(cin, tmp);
 		data.passengers = atoi(tmp.c_str());
-
-		break;
+		if (num_valid(tmp)) // If string-num check passed
+			if (data.passengers > 0) // If data are reasonable
+				break;
 	}
-
-
 
 	while (true)
 	{
 		cout << "9. Объем груза: ";
 		getline(cin, tmp);
 		data.volumeG = atoi(tmp.c_str());
-
-		break;
+		if (num_valid(tmp))
+			if (data.volumeG > 0)
+				break;
 	}
 
 

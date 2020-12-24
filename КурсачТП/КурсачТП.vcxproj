@@ -143,6 +143,7 @@
     <ClCompile Include="Car_Product.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Park_Car.cpp" />
+    <ClCompile Include="Valid.cpp" />
     <ClCompile Include="Tram_Product.cpp" />
     <ClCompile Include="Truck_Product.cpp" />
   </ItemGroup>
@@ -150,6 +151,7 @@
     <ClInclude Include="Car.h" />
     <ClInclude Include="Car_Product.h" />
     <ClInclude Include="Factory.h" />
+    <ClInclude Include="Valid.h" />
     <ClInclude Include="Park_Car.h" />
     <ClInclude Include="Tram_Product.h" />
     <ClInclude Include="Truck_Product.h" />

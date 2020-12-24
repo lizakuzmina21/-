@@ -4,6 +4,7 @@
 #include "Truck_Product.h"
 #include "Tram_Product.h"
 #include "Car_Product.h"
+#include "Valid.h"
 
 void Park_Car::create_truck()
 {
@@ -34,6 +35,7 @@ void Park_Car::change(int k)
 	{
 		if (i == k)
 		{
+			system("cls");
 			string tmp;
 			int flag;
 
@@ -41,39 +43,43 @@ void Park_Car::change(int k)
 			cin >> flag;
 			if (flag == 1)
 			{
-				d.typeCar = "Car_Product";
+				d.typeCar = "Легковая машина";
 			}
 			else if (flag == 2)
 			{
-				d.typeCar = "Truck_Product";
+				d.typeCar = "Грузовая машина";
 			}
 			else
 			{
-				d.typeCar = "Tram_Product";
+				d.typeCar = "Трамвай";
 			}
-			while (true)
+			d.color = "  ";
+			do
 			{
-				cout << "1.цвет: ";
-				cin.get();
-				getline(cin, tmp);
-				d.color = tmp;
-				break;
-			}
+				cout << "1. Цвет: ";
+				getline(cin, d.color);
+			} while (!str_valid(d.color));
 
 			while (true)
 			{
 				cout << "2. Цена: ";
 				getline(cin, tmp);
 				d.price = atoi(tmp.c_str());
-				break;
+				if (num_valid(tmp))
+					if (d.price > 0)
+						break;
+
 			}
 
 			while (true)
 			{
-				cout << "3. Объем двигателя: ";
+				cout << "3. Объем: ";
 				getline(cin, tmp);
 				d.volumeD = atoi(tmp.c_str());
-				break;
+				if (num_valid(tmp))
+					if (d.volumeD > 0)
+						break;
+
 			}
 
 			while (true)
@@ -81,8 +87,10 @@ void Park_Car::change(int k)
 				cout << "4. Номер маршрута: ";
 				getline(cin, tmp);
 				d.number = atoi(tmp.c_str());
+				if (num_valid(tmp))
+					if (d.number > 0)
+						break;
 
-				break;
 			}
 
 			while (true)
@@ -90,7 +98,10 @@ void Park_Car::change(int k)
 				cout << "5. Год производства: ";
 				getline(cin, tmp);
 				d.yearP = atoi(tmp.c_str());
-				break;
+				if (num_valid(tmp))
+					if (d.yearP > 0)
+						break;
+
 			}
 
 			while (true)
@@ -98,39 +109,44 @@ void Park_Car::change(int k)
 				cout << "6. Год запуска в эксплуатацию: ";
 				getline(cin, tmp);
 				d.yearZ = atoi(tmp.c_str());
-				break;
+				if (num_valid(tmp))
+					if (d.yearZ > 0)
+						break;
+
 			}
-			cout << "7. Тип топлива: ";
-			getline(cin, d.type);
-
-
-
+			do
+			{
+				cout << "7. Тип топлива: ";
+				getline(cin, d.type);
+			} while (!str_valid(d.type));
 
 			while (true) // Check for correct input
 			{
 				cout << "8. Число пассажиров: ";
 				getline(cin, tmp);
 				d.passengers = atoi(tmp.c_str());
-				break;
+				if (num_valid(tmp)) // If string-num check passed
+					if (d.passengers > 0) // If data are reasonable
+						break;
 			}
-
-
 
 			while (true)
 			{
 				cout << "9. Объем груза: ";
 				getline(cin, tmp);
 				d.volumeG = atoi(tmp.c_str());
-				break;
+				if (num_valid(tmp))
+					if (d.volumeG > 0)
+						break;
 			}
+
 
 			el->set_data(d);
 		}
 		i++;
 	}
 
-}
-;
+};
 
 void Park_Car::show()
 {
