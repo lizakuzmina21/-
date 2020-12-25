@@ -11,6 +11,7 @@ public:
 	void create_truck() override;
 	void create_tram() override;
 	void change(int);//изменение
+	void delete_car(int);
 	void setData(Data);
 	void show();
 	list<Car*> get_Car();

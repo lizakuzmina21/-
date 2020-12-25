@@ -110,7 +110,7 @@ int main()
 			cout << "Какую машину вы хотите изменить" << endl;
 			h.show();
 
-		/*	cin >> n;*/
+		
 			while (true)
 			{
 				cout << "> ";
@@ -121,6 +121,22 @@ int main()
 						break;
 			}
 			h.change(num - 1);
+		case 6:
+			cout << "Какую машину вы хотите удалить" << endl;
+			h.show();
+
+			//cin >> n;
+			while (true)
+			{
+				cout << "> ";
+				getline(cin, tmp);
+				num = atoi(tmp.c_str());
+				if (num_valid(tmp))
+					if (num > 0)
+						break;
+			}
+			h.delete_car(num - 1);
+			break;
 
 		}
 	}
@@ -138,6 +154,7 @@ int main_menu()
 	cout << "3. Загрузить машины из файла" << endl;
 	cout << "4. Загрузить парк в файл" << endl;
 	cout << "5. Изменить машину в парке" << endl;
+	cout << "6. Удалить машину из парка" << endl;
 	cout << "0. Exit" << endl;
 
 	while (true) // Проверьте правильность ввода
@@ -146,7 +163,7 @@ int main_menu()
 		getline(cin, tmp);
 		menu = atoi(tmp.c_str());
 		if (num_valid(tmp)) // Если проверка номера строки пройдена
-			if (menu >= 0 && menu <= 5) // Если данные разумны
+			if (menu >= 0 && menu <= 6) // Если данные разумны
 				break;
 	}
 

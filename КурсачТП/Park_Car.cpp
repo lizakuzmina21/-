@@ -26,6 +26,26 @@ void Park_Car::setData(Data d)
 {
 	car.push_back(new Truck_Product(1, &d));
 }
+
+
+void Park_Car::delete_car(int k)
+{
+	int i = 0;
+	auto it = car.begin();
+	while (i <= k)
+	{
+		if (i == k)
+		{
+			car.remove(*it);
+
+			cout << "\n deleted" << endl;
+			break;
+		}
+		if (i != car.size() - 1) *it++;
+		i++;
+	}
+}
+
 void Park_Car::change(int k)
 {
 	Data d;
@@ -37,7 +57,7 @@ void Park_Car::change(int k)
 		{
 			system("cls");
 			string tmp;
-			int flag;
+			int flag = 0;
 
 			cout << "Категория машины:\n1.Легковая машина\n2.Грузовая машина\n3.Трамвай " << endl;
 			cin >> flag;
@@ -53,10 +73,11 @@ void Park_Car::change(int k)
 			{
 				d.typeCar = "Трамвай";
 			}
-			d.color = "  ";
+			
 			do
 			{
-				cout << "1. Цвет: ";
+				cout << "1. Цвет машины: ";//херня какая-то 
+
 				getline(cin, d.color);
 			} while (!str_valid(d.color));
 
