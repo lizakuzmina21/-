@@ -10,8 +10,8 @@
 #include "Valid.h"
 using namespace std;
 
-Park_Car read_from_file(int);//читать из файла
-void write_to_file(Park_Car);//записать в файл
+Park_Car reading(int);//читать из файла
+void recording(Park_Car);//записать в файл
 int main_menu();
 
 bool str_cmp(Data d1, Data d2)
@@ -26,7 +26,7 @@ int main()
 	setlocale(LC_ALL, "rus");
 
 	int menu = 1; 
-	int ship_type;
+	int car_type;
 	int num;
 	string tmp;
 	Park_Car h;
@@ -40,38 +40,39 @@ int main()
 		{
 		case 1:
 			system("cls");
-			cout << "Сколько машин вы хотите добавить?\n";
+			cout << "Какое количество транспорта вы хотите добавить в парк транспорта?\n";
 
-			while (true) // Проверьте правильность ввода
+			while (true) 
 			{
-				cout << "> ";
+				cout << "-> ";
 				getline(cin, tmp);
 				num = atoi(tmp.c_str());
-				if (num_valid(tmp)) // Если проверка номера строки пройдена
-					if (num > 0) // Если данные разумны
+				if (num_valid(tmp)) 
+					if (num > 0) 
 						break;
 			}
 
 			for (int i = 0; i < num; i++)
 			{
 				system("cls");
-				cout << "1. Легковая машина" << endl;
-				cout << "2. Грузовая машина" << endl;
-				cout << "3.Трамвай" << endl;
+				cout << "Какой тип транспорта вы хотите добавить?" << endl;
+				cout << "1) Легковая машина" << endl;
+				cout << "2) Грузовая машина" << endl;
+				cout << "3) Трамвай" << endl;
 
 				while (true)
 				{
-					cout << "> ";
+					cout << "-> ";
 					getline(cin, tmp);
-					ship_type = atoi(tmp.c_str());
+					car_type = atoi(tmp.c_str());
 					if (num_valid(tmp))
-						if (ship_type == 1 || ship_type == 2 || ship_type == 3)
+						if (car_type == 1 || car_type == 2 || car_type == 3)
 							break;
 				}
 
-				if (ship_type == 1)
+				if (car_type == 1)
 					h.create_passenger();
-				else if (ship_type == 2)
+				else if (car_type == 2)
 					h.create_truck();
 				else
 					h.create_tram();
@@ -85,11 +86,11 @@ int main()
 
 		case 3:
 			system("cls");
-			cout << "Сколько машин вы хотите добавить из файла ?\n";
+			cout << "Какое количество транспорта вы хотите добавить из файла в парк транспорта ?\n";
 
 			while (true)
 			{
-				cout << "> ";
+				cout << "-> ";
 				getline(cin, tmp);
 				num = atoi(tmp.c_str());
 				if (num_valid(tmp))
@@ -97,23 +98,21 @@ int main()
 						break;
 			}
 
-			h = read_from_file(num);
+			h = reading(num);
 			break;
 
 		case 4:
-			cout << "Выгрузка парка\n";
-			write_to_file(h);
+			cout << "Выгрузка парка транспорта\n";
+			recording(h);
 			getchar();
 			break;
 
 		case 5:
-			cout << "Какую машину вы хотите изменить" << endl;
+			cout << "Какой транспорт вы хотите изменитьв парке тарнспорта?" << endl;
 			h.show();
-
-		
 			while (true)
 			{
-				cout << "> ";
+				cout << "-> ";
 				getline(cin, tmp);
 				num = atoi(tmp.c_str());
 				if (num_valid(tmp))
@@ -121,14 +120,14 @@ int main()
 						break;
 			}
 			h.change(num - 1);
-		case 6:
-			cout << "Какую машину вы хотите удалить" << endl;
-			h.show();
+			break;
 
-			//cin >> n;
+		case 6:
+			cout << "Какой транспорт вы хотите удалить из парка транспорта?" << endl;
+			h.show();
 			while (true)
 			{
-				cout << "> ";
+				cout << "-> ";
 				getline(cin, tmp);
 				num = atoi(tmp.c_str());
 				if (num_valid(tmp))
@@ -148,18 +147,18 @@ int main_menu()
 {
 	int menu;
 	string tmp;
-
-	cout << "1. Добавить машину в парк" << endl;
-	cout << "2. Показать парк" << endl;
-	cout << "3. Загрузить машины из файла" << endl;
-	cout << "4. Загрузить парк в файл" << endl;
-	cout << "5. Изменить машину в парке" << endl;
-	cout << "6. Удалить машину из парка" << endl;
-	cout << "0. Exit" << endl;
+	cout << "\t\t\t\t\t|\t  \x1b[34m ПАРК ТРАНСПОРТА\x1b[0m \t\t\t|\t\t" << endl;
+	cout << "\t\t\t\t\t|\t1. Добавить транспорт в парк\t\t|\t\t" << endl;
+	cout << "\t\t\t\t\t|\t2. Показать парк\t\t\t|\t\t" << endl;
+	cout << "\t\t\t\t\t|\t3. Загрузить транспорт из файла\t\t|\t" << endl;
+	cout << "\t\t\t\t\t|\t4. Загрузить парк в файл\t\t|\t\t" << endl;
+	cout << "\t\t\t\t\t|\t5. Изменить транспорт в парке\t\t|\t\t" << endl;
+	cout << "\t\t\t\t\t|\t6. Удалить транспорт из парка\t\t\|\t\t" << endl;
+	cout << "\t\t\t\t\t|\t0. Exit\t\t\t\t\t|" << endl;
 
 	while (true) // Проверьте правильность ввода
 	{
-		cout << "> ";
+		cout << "-> ";
 		getline(cin, tmp);
 		menu = atoi(tmp.c_str());
 		if (num_valid(tmp)) // Если проверка номера строки пройдена
@@ -170,7 +169,7 @@ int main_menu()
 	return menu;
 }
 
-Park_Car read_from_file(int num)
+Park_Car reading(int num)
 {
 	ifstream in;
 	Park_Car h;
@@ -183,12 +182,12 @@ Park_Car read_from_file(int num)
 	{
 		in.open("C:\\Users\\Кузлик\\source\\repos\\Project9\\Project9\\Debug\\parck.txt", ios::in);
 		if (!in.is_open())
-			throw exception("Файл не открывается!\n");
+			throw exception("Ошибка\n Файл не открывается\n");
 
 		if (in.peek() == EOF)
-			throw exception("Файл пуст!\n");
+			throw exception("Ошибка\n Пустой файл\n");
 
-		while (in.peek() != EOF && num != 0) // Read data from file
+		while (in.peek() != EOF && num != 0) 
 		{
 			getline(in, tmp);
 			if (tmp.empty())
@@ -199,124 +198,123 @@ Park_Car read_from_file(int num)
 			switch (flag)
 			{
 			case 1:
-				if (pos = tmp.find("Тип машины: ") != 0)
-					throw exception("Ошибка в файле\n");
+				if (pos = tmp.find("Категория транспорта: ") != 0)
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\n");
 
-				data.typeCar = tmp.substr(12);
-			if (data.typeCar != "Легковая" && data.typeCar != "Грузовая" && data.typeCar != "Трамвай")
-					throw exception("В файле есть ошибка Типа машины");
+				data.typeCar = tmp.substr(22);
+			if (data.typeCar != "Легковая машина" && data.typeCar != "Грузовая машина" && data.typeCar != "Трамвай")
+					throw exception("Невозможно загрузить данные из файла\nОшибка в характеристике: Тип машины\n");
 				break;
 
 			case 2:
 				if (pos = tmp.find("Цвет машины: ") != 0)
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике машины: Цвет машины\n");
 
 				data.color = tmp.substr(13);
 				break;
 
 			case 3:
 				if (pos = tmp.find("Цена: ") != 0)
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике машины: Цена\n");
 
 				tmp = tmp.substr(6);
 				if (!num_valid(tmp))
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена  ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике машины: Цена\n");
 
 				data.price = atoi(tmp.c_str()); // Convert string to integer
 				if (data.price < 0)
-					throw exception("Ошибка цены в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\n Ошибка в характеристике машины: Цена\n");
 				break;
 
 			case 4:
 				if (pos = tmp.find("Объем двигателя: ") != 0)
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике машины: Объем двигателя\n");
 
 				tmp = tmp.substr(17);
 				if (!num_valid(tmp))
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике машины: Объем двигателя\n");
 
 				data.volumeD = atoi(tmp.c_str()); // Convert string to integer
 				if (data.volumeD < 0)
-					throw exception("Ошибка объема двигателя в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике машины: Объем двигателя\n");
 				break;
 
 			case 5:
 				if (pos = tmp.find("Номер маршрута: ") != 0)
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Номер маршрута\n");
 
 				tmp = tmp.substr(16);
 				if (!num_valid(tmp))
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Номер маршрута\n");
 
 				data.number = atoi(tmp.c_str()); // Convert string to integer
 				if (data.number < 0)
-					throw exception("Ошибка номера маршрута в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Номер маршрута\n");
 				break;
 			case 6:
 				if (pos = tmp.find("Год производства: ") != 0)
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Год производства\n");
 
 				tmp = tmp.substr(18);
 				if (!num_valid(tmp))
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Год производства\n");
 
 				data.yearP = atoi(tmp.c_str()); // Convert string to integer
 				if (data.yearP < 0)
-					throw exception("Ошибка год производства в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Год производства\n");
 				break;
 
 			case 7:
 				if (pos = tmp.find("Год запуска в эксплуатацию: ") != 0)
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Год запуска в эксплуатацию\n");
 
 				tmp = tmp.substr(28);
 				if (!num_valid(tmp))
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Год запуска в эксплуатацию\n");
 
 				data.yearZ = atoi(tmp.c_str()); // Convert string to integer
 				if (data.yearZ < 0)
-					throw exception("Ошибка год запуска в эксплуатацию в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Год запуска в эксплуатацию\n");
 				break;
 
 			case 8:
 				if (pos = tmp.find("Тип топлива: ") != 0)
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Тип топлива\n");
 
 				data.type = tmp.substr(13);
 				break;
 
 			case 9:
 				if (pos = tmp.find("Число пассажиров: ") != 0)
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Число пассажиров\n");
 
 				tmp = tmp.substr(18);
 				if (!num_valid(tmp))
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Число пассажиров\n");
 
 				data.passengers = atoi(tmp.c_str());
 				if (data.passengers < 0)
-					throw exception("Ошибка числа пассажиров в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Число пассажиров\n");
 				break;
 
 			case 10:
 				if (pos = tmp.find("Объем груза: ") != 0)
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Объем груза\n");
 
 				tmp = tmp.substr(13);
 				if (!num_valid(tmp))
-					throw exception("Ошибка в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Объем груза\n");
 
 				data.volumeG = atoi(tmp.c_str());
 				if (data.volumeG < 0)
-					throw exception("Ошибка в объеме груза в файле\n");
+					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\nОшибка в характеристике: Объем груза\n");
 				break;
 			}
-			//cout << "фхует";
-			//system("pause");
+
 			if (flag == 10)
 			{
 				cout << endl;
-				flag = 0; // Zero because of increment below
+				flag = 0; 
 				h.setData(data);
 				num--;
 			}
@@ -336,7 +334,7 @@ Park_Car read_from_file(int num)
 	return h;
 }
 
-void write_to_file(Park_Car h)
+void recording(Park_Car h)
 {
 	ofstream out;
 	Data d;
@@ -351,12 +349,12 @@ void write_to_file(Park_Car h)
 	{
 		out.open("C:\\Users\\Кузлик\\source\\repos\\Project9\\Project9\\Debug\\parck.txt", ios_base::app);
 		if (!out.is_open())
-			throw exception("File can not be opened!");
+			throw exception("Ошибка\n Файл не открывается\n");
 
 		for (auto el : l)
 		{
 			d = el->get_data();
-			out << "Тип машины: " << d.typeCar << endl;
+			out << "Категория транспорта: " << d.typeCar << endl;
 			out << "Цвет машины: " << d.color << endl;
 			out << "Цена: " << d.price << endl;
 			out << "Объем двигателя: " << d.volumeD << endl;

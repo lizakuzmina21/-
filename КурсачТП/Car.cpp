@@ -8,23 +8,24 @@ using namespace std;
 void Car::create(int flag)
 {
 	string tmp;
-
-	cout << "1.Категория машины: ";
+	
+	cout << "1.Категория транспорта: ";
 	if (flag == 1)
 	{
-		data.typeCar = "Легковая";
-		cout << "Легковая" << endl;
+		data.typeCar = "Легковая машина";
+		cout << "Легковая машина" << endl;
 	}
 	else if (flag == 2)
 	{
-		data.typeCar = "Грузовая";
-		cout << "Грузовая" << endl;
+		data.typeCar = "Грузовая машина";
+		cout << "Грузовая машина" << endl;
 	}
 	else
 	{
 		data.typeCar = "Трамвай";
 		cout << "Трамвай" << endl;
 	}
+
 
 	do
 	{
@@ -93,13 +94,13 @@ void Car::create(int flag)
 		getline(cin, data.type);
 	} while (!str_valid(data.type));
 	
-	while (true) // Check for correct input
+	while (true) 
 	{
 		cout << "8. Число пассажиров: ";
 		getline(cin, tmp);
 		data.passengers = atoi(tmp.c_str());
-		if (num_valid(tmp)) // If string-num check passed
-			if (data.passengers > 0) // If data are reasonable
+		if (num_valid(tmp)) 
+			if (data.passengers > 0) 
 				break;
 	}
 

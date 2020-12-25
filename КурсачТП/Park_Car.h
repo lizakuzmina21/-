@@ -5,7 +5,7 @@ using namespace std;
 class Park_Car : public Factory
 {
 private:
-	list <Car*> car; //список со всеми объектами 
+	list <Car*> car;
 public:
 	void create_passenger() override;
 	void create_truck() override;

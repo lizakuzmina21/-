@@ -38,7 +38,7 @@ void Park_Car::delete_car(int k)
 		{
 			car.remove(*it);
 
-			cout << "\n deleted" << endl;
+			cout << "\nПроизошло удаление машины из парка транспорта" << endl;
 			break;
 		}
 		if (i != car.size() - 1) *it++;
@@ -59,7 +59,10 @@ void Park_Car::change(int k)
 			string tmp;
 			int flag = 0;
 
-			cout << "Категория машины:\n1.Легковая машина\n2.Грузовая машина\n3.Трамвай " << endl;
+			cout << "Категория транспорта: " << endl;
+			cout << "1. Легковая машина" << endl;
+			cout << "2.Грузовая машина" << endl;
+			cout<< "3.Трамвай" << endl;
 			cin >> flag;
 			if (flag == 1)
 			{
@@ -73,13 +76,11 @@ void Park_Car::change(int k)
 			{
 				d.typeCar = "Трамвай";
 			}
-			
+			cout << "1. Цвет машины: ";
 			do
 			{
-				cout << "1. Цвет машины: ";//херня какая-то 
-
 				getline(cin, d.color);
-			} while (!str_valid(d.color));
+			} while (!str_valid(d.color)) ;
 
 			while (true)
 			{
@@ -141,13 +142,13 @@ void Park_Car::change(int k)
 				getline(cin, d.type);
 			} while (!str_valid(d.type));
 
-			while (true) // Check for correct input
+			while (true) 
 			{
 				cout << "8. Число пассажиров: ";
 				getline(cin, tmp);
 				d.passengers = atoi(tmp.c_str());
-				if (num_valid(tmp)) // If string-num check passed
-					if (d.passengers > 0) // If data are reasonable
+				if (num_valid(tmp))
+					if (d.passengers > 0) 
 						break;
 			}
 
@@ -176,7 +177,7 @@ void Park_Car::show()
 	for (auto el : car)
 	{
 		d = el->get_data();
-		std::cout << "Тип машины: " << d.typeCar << std::endl;
+		std::cout << "Категория транспорта: " << d.typeCar << std::endl;
 		std::cout << "Цвет машины: " << d.color << std::endl;
 		std::cout << "Объем двигателя: " << d.volumeD << std::endl;
 		std::cout << "Номер маршрута: " << d.number << std::endl;
