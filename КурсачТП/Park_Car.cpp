@@ -6,52 +6,52 @@
 #include "Car_Product.h"
 #include "Valid.h"
 
-void Park_Car::create_truck()
+void Park_Trans::create_truck()
 {
-	car.push_back(new Truck_Product(0));
+	trans.push_back(new Truck_Product(0));
 }
 
-void Park_Car::create_passenger()
+void Park_Trans::create_passenger()
 {
-	car.push_back(new Car_Product(0));
+	trans.push_back(new Car_Product(0));
 }
 
-void Park_Car::create_tram()
+void Park_Trans::create_tram()
 {
-	car.push_back(new Tram_Product(0));
-}
-
-
-void Park_Car::setData(Data d)
-{
-	car.push_back(new Truck_Product(1, &d));
+	trans.push_back(new Tram_Product(0));
 }
 
 
-void Park_Car::delete_car(int k)
+void Park_Trans::setData(Data d)
+{
+	trans.push_back(new Truck_Product(1, &d));
+}
+
+
+void Park_Trans::delete_car(int k)
 {
 	int i = 0;
-	auto it = car.begin();
+	auto it = trans.begin();
 	while (i <= k)
 	{
 		if (i == k)
 		{
-			car.remove(*it);
+			trans.remove(*it);
 
 			cout << "\nПроизошло удаление машины из парка транспорта" << endl;
 			break;
 		}
-		if (i != car.size() - 1) *it++;
+		if (i != trans.size() - 1) *it++;
 		i++;
 	}
 }
 
-void Park_Car::change(int k)
+void Park_Trans::change(int k)
 {
 	Data d;
 	int i = 0;
 
-	for (auto el : car)
+	for (auto el : trans)
 	{
 		if (i == k)
 		{
@@ -66,15 +66,15 @@ void Park_Car::change(int k)
 			cin >> flag;
 			if (flag == 1)
 			{
-				d.typeCar = "Легковая машина";
+				d.typeTrans = "Легковая машина";
 			}
 			else if (flag == 2)
 			{
-				d.typeCar = "Грузовая машина";
+				d.typeTrans = "Грузовая машина";
 			}
 			else
 			{
-				d.typeCar = "Трамвай";
+				d.typeTrans = "Трамвай";
 			}
 			cout << "1. Цвет машины: ";
 			do
@@ -95,7 +95,7 @@ void Park_Car::change(int k)
 
 			while (true)
 			{
-				cout << "3. Объем: ";
+				cout << "3. Объем двигателя: ";
 				getline(cin, tmp);
 				d.volumeD = atoi(tmp.c_str());
 				if (num_valid(tmp))
@@ -170,14 +170,14 @@ void Park_Car::change(int k)
 
 };
 
-void Park_Car::show()
+void Park_Trans::show()
 {
 	Data d;
 
-	for (auto el : car)
+	for (auto el : trans)
 	{
 		d = el->get_data();
-		std::cout << "Категория транспорта: " << d.typeCar << std::endl;
+		std::cout << "Категория транспорта: " << d.typeTrans << std::endl;
 		std::cout << "Цвет машины: " << d.color << std::endl;
 		std::cout << "Объем двигателя: " << d.volumeD << std::endl;
 		std::cout << "Номер маршрута: " << d.number << std::endl;
@@ -185,11 +185,11 @@ void Park_Car::show()
 		std::cout << "Год запуска в эксплуатацию: " << d.yearZ << std::endl;
 		std::cout << "Тип топлива: " << d.type << std::endl;
 		std::cout << "Число пассажиров: " << d.passengers << std::endl;
-		std::cout << "Объем груза: " << d.volumeG << std::endl;
+		std::cout << "Объем груза: " << d.volumeG << std::endl << std::endl;;
 	}
 }
 
-std::list<Car*> Park_Car::get_Car()
+std::list<Trans*> Park_Trans::get_trans()
 {
-	return car;
+	return trans;
 }

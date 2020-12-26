@@ -13,15 +13,15 @@ struct Data
 	std::string type;//тип топлива
 	int passengers;//число пассажиров
 	int volumeG;//объем груза
-	std::string typeCar;//тип машины;
+	std::string typeTrans;//тип машины;
 };
 
-class Car
+class Trans
 {
 protected:
 	Data data;
 public:
-	virtual ~Car() {};
+	virtual ~Trans() {};
 	void create(int flag);
 	void set_data(struct Data);
 	Data get_data() const;

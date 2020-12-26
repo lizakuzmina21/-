@@ -10,13 +10,13 @@
 #include "Valid.h"
 using namespace std;
 
-Park_Car reading(int);//читать из файла
-void recording(Park_Car);//записать в файл
+Park_Trans reading(int);//читать из файла
+void recording(Park_Trans);//записать в файл
 int main_menu();
 
 bool str_cmp(Data d1, Data d2)
 {
-	return d1.typeCar > d2.typeCar;
+	return d1.typeTrans > d2.typeTrans;
 }
 
 int main()
@@ -26,10 +26,10 @@ int main()
 	setlocale(LC_ALL, "rus");
 
 	int menu = 1; 
-	int car_type;
+	int trans_type;
 	int num;
 	string tmp;
-	Park_Car h;
+	Park_Trans h;
 	int n = 0;
 	while (menu)
 	{
@@ -55,7 +55,7 @@ int main()
 			for (int i = 0; i < num; i++)
 			{
 				system("cls");
-				cout << "Какой тип транспорта вы хотите добавить?" << endl;
+				cout << "Какую Категорию транспорта вы хотите добавить?" << endl;
 				cout << "1) Легковая машина" << endl;
 				cout << "2) Грузовая машина" << endl;
 				cout << "3) Трамвай" << endl;
@@ -64,15 +64,15 @@ int main()
 				{
 					cout << "-> ";
 					getline(cin, tmp);
-					car_type = atoi(tmp.c_str());
+					trans_type = atoi(tmp.c_str());
 					if (num_valid(tmp))
-						if (car_type == 1 || car_type == 2 || car_type == 3)
+						if (trans_type == 1 || trans_type == 2 || trans_type == 3)
 							break;
 				}
 
-				if (car_type == 1)
+				if (trans_type == 1)
 					h.create_passenger();
-				else if (car_type == 2)
+				else if (trans_type == 2)
 					h.create_truck();
 				else
 					h.create_tram();
@@ -108,7 +108,7 @@ int main()
 			break;
 
 		case 5:
-			cout << "Какой транспорт вы хотите изменитьв парке тарнспорта?" << endl;
+			cout << "Какой транспорт вы хотите изменить в парке тарнспорта?" << endl;
 			h.show();
 			while (true)
 			{
@@ -169,10 +169,10 @@ int main_menu()
 	return menu;
 }
 
-Park_Car reading(int num)
+Park_Trans reading(int num)
 {
 	ifstream in;
-	Park_Car h;
+	Park_Trans h;
 	Data data;
 	string tmp;
 	int flag = 1;
@@ -201,9 +201,9 @@ Park_Car reading(int num)
 				if (pos = tmp.find("Категория транспорта: ") != 0)
 					throw exception("Обнаружена ошибка в файле\nНевозможно загрузить данные из файла\n");
 
-				data.typeCar = tmp.substr(22);
-			if (data.typeCar != "Легковая машина" && data.typeCar != "Грузовая машина" && data.typeCar != "Трамвай")
-					throw exception("Невозможно загрузить данные из файла\nОшибка в характеристике: Тип машины\n");
+				data.typeTrans = tmp.substr(22);
+			if (data.typeTrans != "Легковая машина" && data.typeTrans != "Грузовая машина" && data.typeTrans != "Трамвай")
+					throw exception("Невозможно загрузить данные из файла\nОшибка в характеристике: Категория транспорта\n");
 				break;
 
 			case 2:
@@ -334,15 +334,15 @@ Park_Car reading(int num)
 	return h;
 }
 
-void recording(Park_Car h)
+void recording(Park_Trans h)
 {
 	ofstream out;
 	Data d;
-	list<Car*> l = h.get_Car();
+	list<Trans*> l = h.get_trans();
 
-	l.sort([](const Car* s1, const Car* s2)
+	l.sort([](const Trans* s1, const Trans* s2)
 		{
-			return s1->get_data().typeCar < s2->get_data().typeCar;
+			return s1->get_data().typeTrans < s2->get_data().typeTrans;
 		});
 
 	try
@@ -354,7 +354,7 @@ void recording(Park_Car h)
 		for (auto el : l)
 		{
 			d = el->get_data();
-			out << "Категория транспорта: " << d.typeCar << endl;
+			out << "Категория транспорта: " << d.typeTrans << endl;
 			out << "Цвет машины: " << d.color << endl;
 			out << "Цена: " << d.price << endl;
 			out << "Объем двигателя: " << d.volumeD << endl;
@@ -363,7 +363,7 @@ void recording(Park_Car h)
 			out << "Год запуска в эксплуатацию: " << d.yearZ << endl;
 			out << "Тип топлива: " << d.type << endl;
 			out << "Число пассажиров: " << d.passengers << endl;
-			out << "Объем груза: " << d.volumeG << endl;
+			out << "Объем груза: " << d.volumeG << endl<< endl;
 		}
 		out.close();
 	}

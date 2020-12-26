@@ -1,7 +1,7 @@
 #pragma once
 #include "Car.h"
 
-class Car_Product : public Car
+class Car_Product : public Trans
 {
 public:
 	Car_Product(int, Data* d = nullptr);
