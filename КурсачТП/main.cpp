@@ -207,10 +207,10 @@ Park_Trans reading(int num)
 				break;
 
 			case 2:
-				if (pos = tmp.find("Öâåò ìàøèíû: ") != 0)
-					throw exception("Îáíàğóæåíà îøèáêà â ôàéëå\nÍåâîçìîæíî çàãğóçèòü äàííûå èç ôàéëà\nÎøèáêà â õàğàêòåğèñòèêå ìàøèíû: Öâåò ìàøèíû\n");
+				if (pos = tmp.find("Öâåò: ") != 0)
+					throw exception("Îáíàğóæåíà îøèáêà â ôàéëå\nÍåâîçìîæíî çàãğóçèòü äàííûå èç ôàéëà\nÎøèáêà â õàğàêòåğèñòèêå ìàøèíû: Öâåò\n");
 
-				data.color = tmp.substr(13);
+				data.color = tmp.substr(6);
 				break;
 
 			case 3:
@@ -355,7 +355,7 @@ void recording(Park_Trans h)
 		{
 			d = el->get_data();
 			out << "Êàòåãîğèÿ òğàíñïîğòà: " << d.typeTrans << endl;
-			out << "Öâåò ìàøèíû: " << d.color << endl;
+			out << "Öâåò: " << d.color << endl;
 			out << "Öåíà: " << d.price << endl;
 			out << "Îáúåì äâèãàòåëÿ: " << d.volumeD << endl;
 			out << "Íîìåğ ìàğøğóòà: " << d.number << endl;

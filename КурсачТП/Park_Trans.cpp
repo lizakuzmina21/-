@@ -38,7 +38,7 @@ void Park_Trans::delete_car(int k)
 		{
 			trans.remove(*it);
 
-			cout << "\nПроизошло удаление машины из парка транспорта" << endl;
+			cout << "\nПроизошло удаление транспорта из парка транспорта" << endl;
 			break;
 		}
 		if (i != trans.size() - 1) *it++;
@@ -59,10 +59,10 @@ void Park_Trans::change(int k)
 			string tmp;
 			int flag = 0;
 
-			cout << "Категория транспорта: " << endl;
-			cout << "1. Легковая машина" << endl;
-			cout << "2.Грузовая машина" << endl;
-			cout<< "3.Трамвай" << endl;
+			cout <<"1.Категория транспорта: " << endl;
+			cout <<"1)Легковая машина" << endl;
+			cout <<"2)Грузовая машина" << endl;
+			cout<< "3)Трамвай" << endl;
 			cin >> flag;
 			if (flag == 1)
 			{
@@ -76,7 +76,7 @@ void Park_Trans::change(int k)
 			{
 				d.typeTrans = "Трамвай";
 			}
-			cout << "1. Цвет машины: ";
+			cout << "2. Цвет: ";
 			do
 			{
 				getline(cin, d.color);
@@ -84,7 +84,7 @@ void Park_Trans::change(int k)
 
 			while (true)
 			{
-				cout << "2. Цена: ";
+				cout << "3. Цена: ";
 				getline(cin, tmp);
 				d.price = atoi(tmp.c_str());
 				if (num_valid(tmp))
@@ -95,7 +95,7 @@ void Park_Trans::change(int k)
 
 			while (true)
 			{
-				cout << "3. Объем двигателя: ";
+				cout << "4. Объем двигателя: ";
 				getline(cin, tmp);
 				d.volumeD = atoi(tmp.c_str());
 				if (num_valid(tmp))
@@ -106,7 +106,7 @@ void Park_Trans::change(int k)
 
 			while (true)
 			{
-				cout << "4. Номер маршрута: ";
+				cout << "5. Номер маршрута: ";
 				getline(cin, tmp);
 				d.number = atoi(tmp.c_str());
 				if (num_valid(tmp))
@@ -117,7 +117,7 @@ void Park_Trans::change(int k)
 
 			while (true)
 			{
-				cout << "5. Год производства: ";
+				cout << "6. Год производства: ";
 				getline(cin, tmp);
 				d.yearP = atoi(tmp.c_str());
 				if (num_valid(tmp))
@@ -128,7 +128,7 @@ void Park_Trans::change(int k)
 
 			while (true)
 			{
-				cout << "6. Год запуска в эксплуатацию: ";
+				cout << "7. Год запуска в эксплуатацию: ";
 				getline(cin, tmp);
 				d.yearZ = atoi(tmp.c_str());
 				if (num_valid(tmp))
@@ -138,13 +138,13 @@ void Park_Trans::change(int k)
 			}
 			do
 			{
-				cout << "7. Тип топлива: ";
+				cout << "8. Тип топлива: ";
 				getline(cin, d.type);
 			} while (!str_valid(d.type));
 
 			while (true) 
 			{
-				cout << "8. Число пассажиров: ";
+				cout << "9. Число пассажиров: ";
 				getline(cin, tmp);
 				d.passengers = atoi(tmp.c_str());
 				if (num_valid(tmp))
@@ -154,7 +154,7 @@ void Park_Trans::change(int k)
 
 			while (true)
 			{
-				cout << "9. Объем груза: ";
+				cout << "10. Объем груза: ";
 				getline(cin, tmp);
 				d.volumeG = atoi(tmp.c_str());
 				if (num_valid(tmp))
@@ -178,7 +178,8 @@ void Park_Trans::show()
 	{
 		d = el->get_data();
 		std::cout << "Категория транспорта: " << d.typeTrans << std::endl;
-		std::cout << "Цвет машины: " << d.color << std::endl;
+		std::cout << "Цвет: " << d.color << std::endl;
+		std::cout << "Цена: " << d.price << std::endl;
 		std::cout << "Объем двигателя: " << d.volumeD << std::endl;
 		std::cout << "Номер маршрута: " << d.number << std::endl;
 		std::cout << "Год производства: " << d.yearP << std::endl;
