@@ -18,13 +18,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Car.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Car_Product.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Park_Car.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Tram_Product.cpp">
@@ -34,6 +28,12 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Valid.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Trans.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Park_Trans.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,16 +47,16 @@
     <ClInclude Include="Valid.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Park_Car.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Tram_Product.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Truck_Product.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Car.h">
+    <ClInclude Include="Trans.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Park_Trans.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

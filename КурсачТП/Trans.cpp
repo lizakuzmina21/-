@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Car.h"
+#include "Trans.h"
 #include "Valid.h"
 
 using namespace std;

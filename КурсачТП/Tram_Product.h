@@ -1,5 +1,5 @@
 #pragma once
-#include "Car.h"
+#include "Trans.h"
 
 class Tram_Product : public Trans
 {
